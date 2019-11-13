@@ -66,6 +66,11 @@ class HafslundAPI():
 
         return self.do_request(url, auth=True)
 
+    def get_timestamp(self):
+        url = "https://api.linkapp.no/timestamp"
+
+        return self.do_request(url, auth=True)
+
     def do_request(self, url, data=None, headers={}, auth=False):
         headers["User-Agent"] = self.user_agent
         if auth:
