@@ -83,6 +83,11 @@ class HafslundAPI():
 
         return self.do_request(url, auth=True)
 
+    def get_reservations(self):
+        url = f"https://api2.linkapp.no/api/reservations/{self.customer_id}"
+
+        return self.do_request(url, auth=True)
+
     def get_timestamp(self):
         url = "https://api.linkapp.no/timestamp"
 
