@@ -78,6 +78,12 @@ class HafslundAPI():
 
         return self.do_request(url, auth=True)
 
+    def get_invoice(self, invoice_number):
+        """ This will get a PDF """
+        url = f"https://api.linkapp.no/user/invoices/{self.customer_id}/{invoice_number}/invoice.pdf?downloadClientId=HS&token={self.token}"
+
+        return self.do_request(url, auth=True)
+
     def get_invoices(self):
         url = f"https://api2.linkapp.no/api/invoices/{self.customer_id}"
 
