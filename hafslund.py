@@ -29,6 +29,7 @@ class HafslundAPI():
         return self.do_request(url, data=data)
 
     def get_consumption(self, meter_point_id, start_date, end_data, resolution):
+        # resolution: hourly, week-stats
         url = f"https://api.linkapp.no/api/consumption/{meter_point_id}/{start_date}/{end_data}/{resolution}"
 
         return self.do_request(url, headers=headers, auth=True)
