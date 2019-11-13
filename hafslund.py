@@ -56,6 +56,11 @@ class HafslundAPI():
 
         return facilities
 
+    def get_flags(self):
+        url = f"https://api2.linkapp.no/api/flags"
+
+        return self.do_request(url, auth=True)
+
     def do_request(self, url, data=None, headers={}, auth=False):
         headers["User-Agent"] = self.user_agent
         if auth:
