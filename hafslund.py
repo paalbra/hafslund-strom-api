@@ -16,7 +16,9 @@ class HafslundAPI():
         self.user_agent = self.config["hafslund"]["user_agent"]
 
         self.auth = self.do_auth().json()
+
         self.api_key = self.auth["apiKey"]
+        self.customer_id = self.auth["facilities"][0]["cabId"]
         self.token = self.auth["token"]
 
     def do_auth(self):
@@ -68,6 +70,11 @@ class HafslundAPI():
 
     def get_flags(self):
         url = f"https://api2.linkapp.no/api/flags"
+
+        return self.do_request(url, auth=True)
+
+    def get_invoices(self):
+        url = f"https://api2.linkapp.no/api/invoices/{self.customer_id}"
 
         return self.do_request(url, auth=True)
 
