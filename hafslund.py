@@ -55,6 +55,11 @@ class HafslundAPI():
 
         return self.do_request(url, headers=headers, auth=True)
 
+    def get_contact(self):
+        url = f"https://api2.linkapp.no/api/contact"
+
+        return self.do_request(url, auth=True)
+
     def get_contracts(self, meter_point_id):
         url = f"https://api2.linkapp.no/api/contracts/{meter_point_id}"
 
