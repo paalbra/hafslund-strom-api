@@ -30,9 +30,8 @@ class HafslundAPI():
 
     def get_consumption(self, meter_point_id, start_date, end_data, resolution):
         url = f"https://api.linkapp.no/api/consumption/{meter_point_id}/{start_date}/{end_data}/{resolution}"
-        headers = {"Authorization": f"Bearer {self.token}"}
 
-        return self.do_request(url, headers=headers)
+        return self.do_request(url, headers=headers, auth=True)
 
     def get_facilities(self, no_consumption=True):
         facilities = copy.deepcopy(self.auth["facilities"])
@@ -42,8 +41,10 @@ class HafslundAPI():
 
         return facilities
 
-    def do_request(self, url, data=None, headers={}):
+    def do_request(self, url, data=None, headers={}, auth=False):
         headers["User-Agent"] = self.user_agent
+        if auth:
+            headers["Authorization"] = f"Bearer {self.token}"
 
         if data:
             return requests.post(url, headers=headers, json=data)
