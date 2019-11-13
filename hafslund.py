@@ -42,6 +42,11 @@ class HafslundAPI():
 
         return response
 
+    def get_billing(self, meter_point_id):
+        url = f"https://api2.linkapp.no/api/billing/{meter_point_id}"
+
+        return self.do_request(url, auth=True)
+
     def get_consumption(self, meter_point_id, start_date, end_data, resolution):
         # resolution: hourly, week-stats
         url = f"https://api.linkapp.no/api/consumption/{meter_point_id}/{start_date}/{end_data}/{resolution}"
