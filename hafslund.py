@@ -16,6 +16,7 @@ class HafslundAPI():
         self.user_agent = self.config["hafslund"]["user_agent"]
 
         self.auth = self.do_auth().json()
+        self.api_key = self.auth["apiKey"]
         self.token = self.auth["token"]
 
     def do_auth(self):
@@ -27,6 +28,19 @@ class HafslundAPI():
         }
 
         return self.do_request(url, data=data)
+
+    def do_token_refresh(self):
+        url = "https://api.linkapp.no/apikey/token-refresh"
+        data = {
+            "apiKey": self.api_key,
+            "client": "minside-web"
+        }
+
+        response = self.do_request(url, data=data, auth=True)
+
+        self.token = response.json()["token"]
+
+        return response
 
     def get_consumption(self, meter_point_id, start_date, end_data, resolution):
         # resolution: hourly, week-stats
