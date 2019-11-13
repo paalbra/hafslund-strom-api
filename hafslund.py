@@ -88,6 +88,11 @@ class HafslundAPI():
 
         return self.do_request(url, auth=True)
 
+    def get_user(self):
+        url = f"https://api2.linkapp.no/api/user"
+
+        return self.do_request(url, auth=True)
+
     def do_request(self, url, data=None, headers={}, auth=False):
         headers["User-Agent"] = self.user_agent
         if auth:
