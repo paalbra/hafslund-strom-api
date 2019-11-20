@@ -27,3 +27,9 @@ api = hafslund.HafslundAPI("config.ini")
 
 pprint.pprint(api.get_facilities())
 ```
+
+## Notes
+
+### Weird consumption endpoint
+
+If you ask for consumption data for tomorrow you obviously won't get that data. But if you keep asking for the same interval you might not get the data when available either (different date intervals will yield data). This might be due to some kind of misconfigured caching in the API?
